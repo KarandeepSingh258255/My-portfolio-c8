@@ -1,19 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- this is a comment the browser ignores this -->
+<!DOCTYPE html> <!--this tells the browser what type of ducment this is -->
+<html lang="en">  <!-- HTML opening tag -->
 
+<!-- Important  data regarding our file that does not have to be displayed  -->
 <head>
     <meta charset="UTF-8"
     <meta name="'viewport" content=""width=device-width, initial-scale="1.0">
     <title> Karans Profolio</title>
+    <link href="style.css" rel="stylesheet" type="text/css"
 </head>
-
-<body>
-    <h1> Hello World </h1>
-    <p> Testing for ITAG</p>
 <!--this is where most of my code will live-->
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li> <a href="#">Home</a> </li>
+                <li> <a href="#about">About</a> </li>
+                <li> <a href="#project">Projects</a> </li>
+                <li> <a href="#skills">Skills</a> </li>
+                <li> <a href="#contact">Contact</a> </li>
+            </ul>
+        </nav>
+    </header>
+
+<main>
+    <section id="about">
+        <h1>About Me</h1>
+        <img src="Karan IMG.jpg" alt="an image of me" width="300" height="270" />
+        <p> his text will be talk about myself</p> 
+    </section>
+
+    <section id="projects">
+        <h1> My projects </h1>
+        <ul>
+            <li> Project 1 </li>
+            <li> Project 2 </li>
+            <li> Project 3 </li>
+        </ul>
+    </section>
+    
+    <section id="skills">
+        <h1> skills</h1>
+    </section>
+
+    <section id="contact">
+        <h1>Contact</h1>
+        <p> Feell free to reach out to me! </p>
+        <a href="mailto:karandeepkrish@gmail.com">Email me! </a>
+    </section>
+
+</main>
+
+
 
 
 </body>
 
 
 </html>
+<!-- HTML closing tag -->
