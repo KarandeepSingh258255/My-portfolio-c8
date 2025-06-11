@@ -3,8 +3,6 @@ html {
     width: 100%;
 }
 
-
-
 a:hover{
     font-size: 32px;
 }
@@ -44,4 +42,22 @@ ul li a{
 
 body{
     margin: 20px;
+}
+
+@media screen and (min-width: 768px){
+    body{
+        background-color: aqua;
+    }
+}
+
+@media screen and (max-width: 768px){
+    body{
+        background-color: green;
+    }
+}
+
+@media screen and (min-width: 768px){
+    body{
+        background-color: aqua;
+    }
 }
