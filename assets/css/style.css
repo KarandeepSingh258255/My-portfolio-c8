@@ -1,23 +1,51 @@
 
-a:hover{
-    font-size: 32px;
-}
-
 #about{
-    background-color: blueviolet;
+    background-color: rgb(231, 167, 18);
+    font-size: 15px;
+    width: auto;
+    padding: auto;
+    margin: 20px;
+    text-align: center;
+   
+    img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width:15%;
+}
+    
 }
 
 #projects{
-    background-color: greenyellow;
+    background-color: rgb(130, 104, 30);
+    font-size: 32px;
+    width: auto;
+    padding: auto;
+    margin: 20px;
+    text-align: center;
 }
 
 #skills{
-    background-color: red;
+    background-color: hwb(43 31% 27%);
+    font-size: 32px;
+    width: auto;
+    padding: auto;
+    margin: 20px;
+    text-align: center;
 }
 
+
 #contact{
-    background-color: blue;
+position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(202, 179, 87);
+  color: white;
+  text-align: center;
 }
+
+    
 
 ul{
     list-style: none;
@@ -32,23 +60,27 @@ li{
     padding-right: 40px;
 }
 
-ul li a{
-    text-decoration:none;
-}
 
-body{
-    margin: 20px;
-}
+
+
 
 @media screen and (min-width: 768px){
-    body{
-        background-color: aqua;
-    }
+}
+    
+
+@media screen and (min-width: 768px){
+
+}
+    
+
+@media screen and (min-width: 992px){
+
+   }
+
+@media screen and (min-width: 1200px){
+
 }
 
-@media screen and (max-width: 768px){
-    body{
-        background-color: green;
-    }
+@media screen and (min-width: 1400px){
+    
 }
-
