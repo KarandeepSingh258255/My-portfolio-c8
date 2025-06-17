@@ -1,5 +1,5 @@
 
-#about{
+#About{
     background-color: rgb(231, 167, 18);
     font-size: 15px;
     width: auto;
@@ -16,7 +16,7 @@
     
 }
 
-#projects{
+#Projects{
     background-color: rgb(130, 104, 30);
     font-size: 32px;
     width: auto;
@@ -25,17 +25,22 @@
     text-align: center;
 }
 
-#skills{
+#Skills{
     background-color: hwb(43 31% 27%);
     font-size: 32px;
     width: auto;
     padding: auto;
     margin: 20px;
     text-align: center;
+
+    p{
+        font-size: 20px;
+        color: white;
+    }
 }
 
 
-#contact{
+#Contact{
 position: fixed;
   left: 0;
   bottom: 0;
@@ -61,26 +66,76 @@ li{
 }
 
 
+/* Mobile styles */
+
+
+@media screen and (max-width: 600px){
 
 
 
-@media screen and (min-width: 768px){
+
+ #About{
+    background-color: sienna;
+    font-family: Helvitica;
+    
+    h1{
+        font-size: 20px;
+        color: white;
+    }
+
+    p{
+        font-size: 15px;
+        color: white;
+    }
+
+    img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;}
+    }
+
+#Skills{
+    background-color: saddlebrown;
+   
+    h1{
+        font-size: 30px;
+        color: white;
+        margin: 10px
+    }
+
 }
+#Projects{
+    background-color: peru;
+    h1{
+        font-size: 30px;
+        color: white;
+        margin: 10px
+    }
+
+    ul{
+        font-size: 20px;
+        color: white;
+    }
+
+}
+#Contact{
+    background-color: coral;
+    p{
+        text-transform: capitalize;
+    }
+}
+}
+
+
     
 
-@media screen and (min-width: 768px){
+ /* @media screen and (min-width: 768px){
 
 }
     
-
-@media screen and (min-width: 992px){
-
-   }
 
 @media screen and (min-width: 1200px){
 
 }
-
-@media screen and (min-width: 1400px){
-    
-}
+ */ 
