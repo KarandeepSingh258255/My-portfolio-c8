@@ -80,3 +80,35 @@ img{
 
 }
 
+@media screen and (max-width: 600px){
+   
+
+    #article{
+        font-size: 15px;
+        background-color: rgb(61, 0, 0);
+        color: white;
+    }
+
+    #description1, #description2{
+        background-color: rgb(61, 0, 0);
+        color: white;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    #description1 p, #description2 p{
+        font-size: 10px;
+        margin-left: 20px;
+        margin-right: 20px;
+         background-color: rgb(61, 0, 0);
+         color: white;
+    }
+
+    #description1 img, #description2 img{
+        width: 150px;
+        height: 150px;
+        display: block;
+         background-color: rgb(61, 0, 0);
+         color: white;
+    }
+}
