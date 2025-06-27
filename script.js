@@ -84,3 +84,66 @@ function grades(grade)
 grades(85);
 grades(95);
 grades(50);
+
+let cars = ["honda", "BMW", "FORD"];
+console.log(cars.sort());
+
+// adding element to the end
+cars.push("Toyota");
+console.log(cars);
+
+// remove last
+cars.pop();
+console.log(cars);
+
+// add to the start
+cars.unshift("tesla");
+console.log(cars);
+
+// removes first
+cars.shift();
+console.log(cars)
+
+let colors = ["red", "blue"];
+
+let carsAndColors = cars.concat(colors);
+console.log(carsAndColors);
+
+
+cars.sort();
+console.log(cars)
+
+cars.reverse();
+console.log(cars);
+
+// for(var i = 0; i < 5; i+=3){
+//     console.log("Loop: "+ i);
+// }
+
+// var arr = ["a", "b", "c"];
+// for (var i = 0; i < arr.length; i++){
+//     console.log(arr[i]);
+// }
+
+
+// for(i in arr){
+//     console.log(i);
+// }
+// prints 0, 1 ,2
+
+// let animals = ['lion', 'elephant', 'tiger', 'giraffe', 'zebra', 'monkey', 'bison', 'bear'];
+
+// // for (var i = 0; i < animals.length; i++){
+// //     console.log(animals[i]);
+// // }
+
+// for (var i = 1; i < animals.length; i+=2){
+//     console.log(animals[i]);
+// }
+
+let music = ['ptv', 'mychem', 'dc', 'newjeans', 'panic'];
+
+// for (var i = 0; i < music.length; i++){
+//     console.log(music[i].toUpperCase());
+// }
+
