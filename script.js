@@ -141,7 +141,7 @@ console.log(cars);
 //     console.log(animals[i]);
 // }
 
-let music = ['ptv', 'mychem', 'dc', 'newjeans', 'panic'];
+// let music = ['ptv', 'mychem', 'dc', 'newjeans', 'panic'];
 
 // for (var i = 0; i < music.length; i++){
 //     console.log(music[i].toUpperCase());
