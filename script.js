@@ -1,149 +1,243 @@
-// console.log("script.js loaded");
+function uploadAndIdentifyPlantID(){
+    // Get the photo from the front end 
+    const photoInput = document.getElementById("photoInput");
 
-// let myString = "a2b3c";
-// console.log(myString);
-// console.log(typeof myString);
-
-// let myNumVar = 123;
-// console.log(typeof myNumVar);
-
-// // let randomVar = jfk ;
-
-// console.log(10 + "eggs");
-// console.log( 10 + 5 + " eggs");
-// console.log("eggs " + 10 + 5);
-
-// console.log(5<2)&&(5>3);
-// console.log(10>3) || (5<2);
-// console.log (!5>3);
-
-
-// let EC = 1;
-// if(EC > 1.8 ){
-//     console.log("EC is greater than 1.8");
-// } else{
-//     console.log("the plant is healthy!")
-// }
-
-// let age = prompt("Enter your age")
-// if (age<18){
-//    alert("you are a minor");
-// } else if (age<60){
-//     alert("you are an adult");
-// } else{
-//     alert("you are old!");
-// }
-
-
-// function introduction(name, age){
-//     console.log("Hello my name is " + name + " and I am " + age + " years old !");
-// }
-// introduction("karan", 19);
-
-// function test(a, b, c){
-//     console.log("My name is " + a + " and I go to " + b + " for school." + " I am a " + c + " major student.");
-// }
-
-// test("karan", "NYIT", "computer science");
-
-
-
-// var str = "I love tech class";
-// console.log(str.toUpperCase());
-// console.log(str.slice(2, 5));
-// console.log(strindexOf("c"));
-
-// var classr = ["sebastian", "Karan", "bria", "Anjali", "Agona"];
-// console.log(classr[0]);
-
-// var heroes = ["batman", "superman", "spiderman", "ironman", "hulk", "thor", "captain America", "blackwidow", "black panther", "wonderwoman"];
-// console.log(heroes[0].toUpperCase());
-// console.log(heroes[1].slice(0, 3))
-// console.log(heroes[7].length);
-// console.log(heroes.array);
-
-function grades(grade) 
-{
-    if (grade >= 90){
-        console.log("A");
+    //if no photo was selected the user clicks on submit
+    // alerts to upload photo
+    if (photoInput.files.length === 0){
+        alert("please select a photo to upload.");
+        return;
     }
-    else if (grade >= 80){
-        console.log("B");
-    }
-    else if (grade >= 70){
-        console.log("C");
-    }
-    else if (grade >= 60){
-        console.log("D");
-    }
-    else{
-        console.log("F");
-    }
+// select the file from the file arrays of an input element 
+const selectedFile = photoInput.files[0];
+
+// create new file reader to read files
+const reader = new FileReader();
+
+// trigger the onload event when the reading is done
+reader.onload = function (e){
+    //store base64image in var
+    const base64Image = e.target.result;
+    console.log('base64Image', base64Image);
+    // store variable for api call
+    const apiKey = 'LmuZmtHi4WxzSmVQs1DHpPw1UBg8F2rA2g9QYMNgrq3Xyp73Hx'
+    const latitude = 49.207;
+    const longitude = 16.608;
+    const  health = 'all';
+    const similarImages = true;
+    const details = 'common_names,url,description,taxonomy,rank,gbif_id,inaturalist_id,image,synonyms,edible_parts,watering,propagation_methods,treatment,cause'
+    const language = 'en'
+    const apiUrlPlantID = `https://plant.id/api/v3/identification?details=${details}&language=${language}`
+
+    //make first api call with your base64Image
+    axios.post(apiUrlPlantID, {
+        "images": [base64Image],
+        "latitude": latitude,
+        "longitude": longitude,
+        "health": health,
+        "similar_images": similarImages
+    },{
+        headers: {
+            "Api-key": apiKey,
+            "Content-Type": "application/json"
+        }
+    })
+    //this is the pending state of the promise
+    .then (function(response){
+        console.log('Response from Plant ID API:', response.data);
+        displayPlantIDInfo(response.data, base64Image)
+    })
+    //this is the error state of the promise
+    .catch(function (error){
+        alert(`Error: ${error} XXX`)
+        console.error('Error:', error);
+        });
+    }; 
+
+    // read the selected file as a data url a base 64 rep of the files content
+    reader.readAsDataURL(selectedFile);
 }
 
-grades(85);
-grades(95);
-grades(50);
-
-let cars = ["honda", "BMW", "FORD"];
-console.log(cars.sort());
-
-// adding element to the end
-cars.push("Toyota");
-console.log(cars);
-
-// remove last
-cars.pop();
-console.log(cars);
-
-// add to the start
-cars.unshift("tesla");
-console.log(cars);
-
-// removes first
-cars.shift();
-console.log(cars)
-
-let colors = ["red", "blue"];
-
-let carsAndColors = cars.concat(colors);
-console.log(carsAndColors);
 
 
-cars.sort();
-console.log(cars)
 
-cars.reverse();
-console.log(cars);
+// display function for the plant ID info
+function displayPlantIDInfo(plantIDResponse, base64Image){
+// VARIABLE to store the first suggestion
+const plantIDClassification =plantIDResponse.result.classification;
+const plantIdDisease = plantIDResponse.result.disease;
+const plantIdIsHealthy = plantIDResponse.result.is_healthy;
+const plantIdIsPlant = plantIDResponse.result.is_plant;
 
-// for(var i = 0; i < 5; i+=3){
-//     console.log("Loop: "+ i);
-// }
+//plan preview image 
+// grab the preview element from the plant iden html file
 
-// var arr = ["a", "b", "c"];
-// for (var i = 0; i < arr.length; i++){
-//     console.log(arr[i]);
-// }
+const previewImage = document.getElementById('previewImage')
+previewImage.src = base64Image
+
+// plant name
+//grab the html for the plant title container
+const plantNameContainer = document.getElementById('plant-name-container');
+const plantNameElement = document.createElement('p');
+//add the name of the tag to the new p tag
+plantNameElement.innerHTML = `<strong>Name:</strong> ${plantIdClassification.suggestions[0].name}`;
+// append the new div to the api result container we got from html 
+plantNameContainer.appendChild(plantNameElement);
+
+// similar image
+// grab the similar image from api response
+const plantSimaliarImage = plantIDClassification.suggestions[0].similar_images[0].url;
+// grab the html where the image will be placed
+const similiarImageHTML = document.getElementById('plant-similiar-image');
+//set image html arc attribute to the image
+similiarImageHTML.src - plantSimiliarImage;
 
 
-// for(i in arr){
-//     console.log(i);
-// }
-// prints 0, 1 ,2
+// grab the score from the API response
+const probabilityOfPlant = plantIDClassification.suggestions[0].probability;
+// grab the html where the probability will be placed 
+const probabilityNameContainer = document.getElementById('probability-container');
+// create a new p tag for the probability text
+const probabilityNameElement = document.createElement('p');
+// add the probability to the inner HTML of the new p tag
+probabilityNameElement.innerHTML = `<strong> Probability: </strong> ${probabilityOfPlant}`;
+//append the new div
+probabilityNameContainer.appendChild(probabilityNameElement);
 
-// let animals = ['lion', 'elephant', 'tiger', 'giraffe', 'zebra', 'monkey', 'bison', 'bear'];
+// is plant section
+// grab the isplant boolean avlue from the api section
 
-// // for (var i = 0; i < animals.length; i++){
-// //     console.log(animals[i]);
-// // }
+const isPlant = plantIdIsPlant.binary
+// grab the html where the boolean will be placed
+const isPlantContainer = document.getElementById('isPlant-container');
+//create new p tag for the is plant boolean
+const isPlantElement = document.createElement('p');
+// check to see if the picture submitted is a plant
+if (isPlant === false){
+    alert("The picture you havge submitted is not a plant");
+    window.location.reload();
 
-// for (var i = 1; i < animals.length; i+=2){
-//     console.log(animals[i]);
-// }
+}
+// add the boolean to the inner html of the new p tag
 
-// let music = ['ptv', 'mychem', 'dc', 'newjeans', 'panic'];
+isPlantElement.innerHTML = `<strong> Is Plant: </strong> ${isPlant}`;
+//append the new div
+isPlantContainer.appendChild(isPlantElement);
 
-// for (var i = 0; i < music.length; i++){
-//     console.log(music[i].toUpperCase());
-// }
+//common name - grab the first common name from the api response 
+const commonName = plantIDClassification.suggestions[0].details.common_names[0];
+// grab the html where the common name will be placed
+const commonNameContainer = document.getElementById('common-name-container')
+// create a new p tag
+const commonNameElement = document.createElement('p');
+// add the common name to the innerHTML of the new P tag
+commonNameElement.innerHTML = `<strong> Common Name: </strong> ${commonName}`;
+//append the new div
+commonNameContainer.appendChild(commonNameElement);
 
+
+//description - GRAB VALUE FROM THE API RESPONSE
+const plantDescription = plantIDClassification.suggestions[0].details.description.value;
+
+//GRAB CONTAINER FROM THE FRONT END
+const descriptionContainer = document.getElementById('description-container');
+
+// CREATE NEW P TAG
+const descriptionElement = document.createElement('p');
+
+// ADD THE TEXT TO THE INNER HTML
+descriptionElement.innerHTML =  `<strong> Description: </strong> ${plantDescription}`;
+// append the new div
+descriptionContainer.appendChild(descriptionElement);
+
+
+
+// PLANT HEALTH STATUS- GRAB VALUE FROM THE API RESPONSE
+const plantHealthStatus = plantIdIsHealthy.binary
+
+//GRAB CONTAINER FROM THE FRONT END
+const plantHealthStatusContainer = document.getElementById('plant-health-status-container');
+
+// CREATE NEW P TAG
+const plantHealthStatusElement = document.createElement('p');
+
+plantHealthStatusElement.innerHTML = `<strong> Plant Health Status: </strong> ${plantHealthStatus}`;
+//append the new div
+plantHealthStatusContainer.appendChild(plantHealthStatusElement);
+
+
+// SIMILAR IMAGE WITH DISEASE
+const plantSimiliarImageWithDisease = plantIdDisease.suggestions[0].similar_images[0].url;
+//grab the html where the image will be placed 
+const similiarImageWithDiseaseHTML = document.getElementById('plant-similiar-image-with-disease')
+// set the image html src attribute 
+similiarImageWithDiseaseHTML.src = plantSimiliarImageWithDisease;
+
+//disease - GRAB VALUE FROM THE API RESPONSE
+const PlantDiseaseName = plantIdDisease.suggestions[0].name;
+
+const plantDiseaseNameContainer = document.getElementById('plant-disease-name-container');
+
+const plantDiseaseNameElement = document.createElement('p');
+
+plantDiseaseNameElement.innerHTML = `<strong> Plant Disease Name: </strong> ${plantDiseaseName}`;
+
+plantDiseaseNameContainer.appendChild(plantDiseaseNameElement);
+
+// Disease Probability
+
+const plantDiseaseProbability = plantIdDisease.suggestions[0].probability;
+
+const plantDiseaseProbabilityContainer = document.getElementById('plant-disease-probability-container')
+
+const plantDiseaseProbabilityElement = document.createElement('p');
+
+plantDiseaseProbabilityElement.innerHTML = `<strong> Plant Disease Probability: </strong> ${plantDiseaseProbability}`;
+
+plantDiseaseProbabilityContainer.appendChild(plantDiseaseProbabilityElement);
+
+//plantDiseaseDescription
+const plantDiseaseDescription = plantIdDisease.suggestions[0].details.descriptions;
+
+const plantDiseaseDescriptionContainer = document.getElementById('plant-disease-description-container')
+
+const plantDiseaseDescriptionElement = document.createElement.apply('p');
+
+plantDiseaseDescriptionElement = `<strong> Plant Disease Description: </strong> ${plantDiseaseDescription}`;
+
+plantDiseaseDescriptionContainer.appendChild(plantDiseaseDescriptionElement);
+
+// disease treatment
+
+const plantDiseaseTreatment = plantIdDisease.suggestions[0].details.treatment;
+
+const plantDiseaseTreatmentContainer = document.getElementById('plant-disease-treatment-container');
+
+const plantDiseaseTreatmentElement = document.createElement('p');
+
+
+
+// check if the plant is dead
+
+if(Object.keys(plantDiseaseTreatment).length === 0){
+    //add text to the inner html of the new p tag created
+    plantDiseaseTreatmentElement.innerHTML = '<strong> Disease Treatment: </strong>No Treatment Available';
+    plantDiseaseTreatmentContainer.appendChild(plantDiseaseTreatmentElement);
+}
+
+// for loop through the object and map the keys to value then attach them to their html containers 
+
+for (const key in plantDiseaseTreatment){
+    // if the object has a key value pair 
+    if(plantDiseaseTreatment.hasOwnProperty(key)){
+        // create a variable that matches the key with values and wraps them in html
+        const plantDiseaseTreatmentValues = plantDiseaseTreatment[key].map(value =>`<li>${value}</li>`).join('');
+        const plantDiseaseTreatmentText = `<strong>Disease Treatment ${key}</strong> <ul>${plantDiseaseTreatmentValues}</ul>`;
+        // append the key value pairs into the html container
+        plantDiseaseTreatmentContainer.innerHTML +=plantDiseaseTreatmentText;
+    }
+
+}
+
+
+}
