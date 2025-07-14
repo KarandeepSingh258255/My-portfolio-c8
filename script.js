@@ -27,7 +27,7 @@ reader.onload = function (e){
     const similarImages = true;
     const details = 'common_names,url,description,taxonomy,rank,gbif_id,inaturalist_id,image,synonyms,edible_parts,watering,propagation_methods,treatment,cause'
     const language = 'en'
-    const apiUrlPlantID = `https://plant.id/api/v3/identification?details=${details}&language=${language}`
+    const apiUrlPlantID = `https://plant.id/api/v3/identification?details=${details}&language=${language}`;
 
     //make first api call with your base64Image
     axios.post(apiUrlPlantID, {
@@ -49,7 +49,7 @@ reader.onload = function (e){
     })
     //this is the error state of the promise
     .catch(function (error){
-        alert(`Error: ${error} XXX`)
+        alert(`Error: ${error} XXX`);
         console.error('Error:', error);
         });
     }; 
@@ -64,7 +64,7 @@ reader.onload = function (e){
 // display function for the plant ID info
 function displayPlantIDInfo(plantIDResponse, base64Image){
 // VARIABLE to store the first suggestion
-const plantIDClassification =plantIDResponse.result.classification;
+const plantIDClassification = plantIDResponse.result.classification;
 const plantIdDisease = plantIDResponse.result.disease;
 const plantIdIsHealthy = plantIDResponse.result.is_healthy;
 const plantIdIsPlant = plantIDResponse.result.is_plant;
@@ -80,13 +80,13 @@ previewImage.src = base64Image
 const plantNameContainer = document.getElementById('plant-name-container');
 const plantNameElement = document.createElement('p');
 //add the name of the tag to the new p tag
-plantNameElement.innerHTML = `<strong>Name:</strong> ${plantIdClassification.suggestions[0].name}`;
+plantNameElement.innerHTML =`<strong>Name:</strong> ${plantIDClassification.suggestions[0].name}`;
 // append the new div to the api result container we got from html 
 plantNameContainer.appendChild(plantNameElement);
 
 // similar image
 // grab the similar image from api response
-const plantSimaliarImage = plantIDClassification.suggestions[0].similar_images[0].url;
+const plantSimiliarImage = plantIDClassification.suggestions[0].similar_images[0].url;
 // grab the html where the image will be placed
 const similiarImageHTML = document.getElementById('plant-similiar-image');
 //set image html arc attribute to the image
@@ -114,7 +114,7 @@ const isPlantContainer = document.getElementById('isPlant-container');
 const isPlantElement = document.createElement('p');
 // check to see if the picture submitted is a plant
 if (isPlant === false){
-    alert("The picture you havge submitted is not a plant");
+    alert("The picture you have submitted is not a plant");
     window.location.reload();
 
 }
@@ -174,7 +174,7 @@ const similiarImageWithDiseaseHTML = document.getElementById('plant-similiar-ima
 similiarImageWithDiseaseHTML.src = plantSimiliarImageWithDisease;
 
 //disease - GRAB VALUE FROM THE API RESPONSE
-const PlantDiseaseName = plantIdDisease.suggestions[0].name;
+const plantDiseaseName = plantIdDisease.suggestions[0].name;
 
 const plantDiseaseNameContainer = document.getElementById('plant-disease-name-container');
 
@@ -201,9 +201,9 @@ const plantDiseaseDescription = plantIdDisease.suggestions[0].details.descriptio
 
 const plantDiseaseDescriptionContainer = document.getElementById('plant-disease-description-container')
 
-const plantDiseaseDescriptionElement = document.createElement.apply('p');
+const plantDiseaseDescriptionElement = document.createElement('p');
 
-plantDiseaseDescriptionElement = `<strong> Plant Disease Description: </strong> ${plantDiseaseDescription}`;
+plantDiseaseDescriptionElement.innerHTML = `<strong>Plant Disease Description:</strong> ${plantDiseaseDescription}`;
 
 plantDiseaseDescriptionContainer.appendChild(plantDiseaseDescriptionElement);
 
