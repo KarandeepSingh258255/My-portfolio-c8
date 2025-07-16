@@ -90,7 +90,7 @@ const plantSimiliarImage = plantIDClassification.suggestions[0].similar_images[0
 // grab the html where the image will be placed
 const similiarImageHTML = document.getElementById('plant-similiar-image');
 //set image html arc attribute to the image
-similiarImageHTML.src - plantSimiliarImage;
+similiarImageHTML.src = plantSimiliarImage;
 
 
 // grab the score from the API response
