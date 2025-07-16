@@ -139,7 +139,7 @@ li{
 }
  */
 
- 
+
 
 #nav a {
   color: rgb(236, 137, 137);
@@ -158,16 +158,16 @@ li{
   left: 50%;
   transform: translate(-50%, -50%);
    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-   font-size: 60px;
+   font-size: 50px;
    color: rgb(255, 255, 255);
    p{
-    font-size: 120px;
+    font-size: 90px;
    }
 }
 
 #second{
     margin:0px;
-    background-color: rgb(238, 114, 114);
+    background-color: rgb(110, 41, 41);
     margin-top:0px;
 h{
     text-align: center;
@@ -188,10 +188,16 @@ h{
 }
 
 #third{
-
+    background-color: rgb(120, 24, 24);
 }
 
-#skills{}
+#third img{
+        height: 450px;
+    }
+
+#skills{
+    justify-content: center;
+}
 
 #footer{}
 
