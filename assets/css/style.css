@@ -150,8 +150,6 @@ li{
     height: 200px; 
     margin:0px;
 }
-
-
 .centered {
   position: absolute;
   top: 50%;
@@ -174,7 +172,7 @@ h{
     font-size:35px;
 }
     img{
-       height: 45vh;
+       height: 60vh;
        width: 45vh;
        display: block;
     margin-left: auto;
@@ -183,23 +181,152 @@ h{
  p{
     text-align: center;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 25px;
+    font-size: 15px;
+    color:aliceblue;
  }
+}
+#second header {
+  color: #f2f2f2; 
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 #third{
     background-color: rgb(120, 24, 24);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-#third img{
-        height: 450px;
-    }
+.card-img-top {
+  height: 400px;
+  object-fit: cover;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.badge.text-bg-secondary{
+    background-color: black !important;
+    
+}
+
+.project-card btn{
+    align-self: start;
+    margin-top: auto;
+}
+
+#third a{
+    background-color: rgb(1, 8, 13);
+}
 
 #skills{
     justify-content: center;
+    background-color:rgb(110, 41, 41);
+    
+}
+.badge{
+    font-size:xx-large;
+    padding: 0.6em 1em;
 }
 
-#footer{}
+#skills p{
+    justify-content:center;
+    display: flex;
+    flex-wrap: wrap;
+    gap:10px;
+    
+
+}
+
+#skills, #footer {
+  margin: 0;
+  padding: 20px 0;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  margin: 0;
+  padding: 0;
+}
+
+#footer{
+    background-color: rgb(129, 24, 24);
+    text-align:center;
+    p{
+        color:#f2f2f2;
+    }
+}
+
+@media (max-width: 768px){
+    .centered{
+         margin-top: -250px;
+    }
+
+    .centered p{
+        font-size:40px;
+    }
+    #second h{
+        font-size: 25px;
+    }
+    #second img{
+        height:550px;
+        width:500px;
+    }
+
+    #second p{
+        font-size: 13px;
+        padding: 0 10px;
+    }
+     .card-img-top{
+        height: 200px;
+     }
+     .badge{
+        font-size: large;
+        padding: 0.4em 0.8em;
+     }
+     #skills p{
+        flex-direction: column;
+        align-items: center;
+     }
+     .project-card{
+        margin-bottom: 20px;
+     }
+     #skills #footer{
+        padding: 10px 0;
+     }
+
+}
+
+@media (max-width: 480px){
+    .centered{
+        
+        margin-top: -300px;
+    }
+    .centered p{
+        font-size: 30px;
+    }
+    #second img{
+        height: 25vh;
+        width: 25vh;
+    }
+    .badge {
+        font-size: medium;
+        padding: 0.3em 0.6em;
+    }
+}
 
 
 
