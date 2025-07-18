@@ -146,6 +146,8 @@ li{
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
+
+
 #first #img1{
     height: 200px; 
     margin:0px;
@@ -188,7 +190,10 @@ h{
 #second header {
   color: #f2f2f2; 
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-align: center;
 }
+
+
 
 #third{
     background-color: rgb(120, 24, 24);
@@ -230,6 +235,7 @@ h{
 #skills{
     justify-content: center;
     background-color:rgb(110, 41, 41);
+    text-align: center;
     
 }
 .badge{
@@ -308,6 +314,8 @@ header {
         padding: 10px 0;
      }
 
+     
+     
 }
 
 @media (max-width: 480px){
