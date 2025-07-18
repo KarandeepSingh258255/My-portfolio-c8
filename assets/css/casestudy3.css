@@ -7,6 +7,11 @@
     text-align: center;
     background: linear-gradient(to right, #88c999, #4a9f7a);
     color: white;
+
+    img{
+        height:500px;
+        width:1200px;
+    }
 }
 
 #TOC{
@@ -39,4 +44,12 @@ html{
 
 strong{
     color:black !important;
+}
+
+@media screen and (max-width:768px){
+   #plantapicase img{
+    width:670px !important;
+    height:450px !important;
+    object-fit: cover;
+   }
 }
