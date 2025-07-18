@@ -1,4 +1,4 @@
-#nav a {
+#nav-a{
   color: rgb(55, 152, 60);
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
@@ -27,10 +27,3 @@ p{
 
 }
 
-#contents{
-    padding:20px;
-    width:90%;
-    max-width:900px;
-    margin: 20px auto;
-    background-color: #ffffff;
-}

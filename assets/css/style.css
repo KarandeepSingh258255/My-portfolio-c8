@@ -321,10 +321,10 @@ header {
 @media (max-width: 480px){
     .centered{
         
-        margin-top: -300px;
+        margin-top: -270px;
     }
     .centered p{
-        font-size: 30px;
+        font-size: 25px;
     }
     #second img{
         height: 25vh;
@@ -333,7 +333,10 @@ header {
     .badge {
         font-size: medium;
         padding: 0.3em 0.6em;
+
     }
+
+
 }
 
 
